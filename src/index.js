@@ -4,6 +4,8 @@ import './style.css';
 import './initial-ui';
 import UIHandler from './project-ui';
 import Update from './update';
+import Runner from './runner';
+const Run = new Runner ();
 // const Ahmad = new Project ({
 //     title: "Khar" ,
 //     description: "Khari dar mazrae", 
@@ -11,7 +13,7 @@ import Update from './update';
 //     priority: "ziad"
 // });
 // const Ahmad = new Project ();
-const projectUI = new Update();
+// const projectUI = new Update();
 // Ahmad.addProject("Khar");
 // Ahmad.addProject("Gav");
 // Ahmad.addProject("Olagh");
@@ -29,4 +31,5 @@ const projectUI = new Update();
 // Ahmad.removeTask(1,1);
 // projectUI.initate();
 // console.log(Ahmad.currentProjects);
-projectUI.updateUIStatus();
+// projectUI.updateUIStatus();
+Run.runForms();

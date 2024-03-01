@@ -1,3 +1,4 @@
+/*
 export class ProjectsUI {
     constructor (projects) {
         this.projects = projects;
@@ -164,9 +165,13 @@ export class ProjectsUI {
         // this.runTaskForm();
     }
 }
+*/
 
 
 export default class ProjectsUI {
+    constructor () {
+        this.currentProject;
+    }
     static elements = {
         //  navbar: document.querySelector(".content .navbar"),
          projectsTitle: document.querySelector(".projects-title"),
@@ -177,46 +182,58 @@ export default class ProjectsUI {
         //  projectInputError: ProjectsUI.#projectForm.querySelector("form span"),
         //  projectSubmit: ProjectsUI.#projectForm.querySelector("form button")
     }
-    static updateProjectsAndTasks (projects) {
+    static makeTask (task) {
+        const ui = document.createElement("ui");
+        const li = document.createElement("li");
+        const check = document.createElement("div");
+        const taskDiv = document.createElement("div");
+        const taskTitle = document.createElement("div");
+        const taskDetails = document.createElement("div");
+        li.setAttribute("id", task.id);
+        check.setAttribute("class", "unchecked");
+        taskDiv.setAttribute("class", "list-details");
+        taskTitle.setAttribute("class", "task-title");
+        taskDetails.setAttribute("class", "task-details");
+        taskTitle.textContent = task.title;
+        taskDetails.textContent = task.description;
+        taskDiv.append(taskTitle);
+        taskDiv.append(taskDetails);
+        li.append(check);
+        li.append(taskDiv);
+        return li;
+    }
+    linkTasks (projectLink, tasks, id) {
+        projectLink.addEventListener("click", () => {
+            this.currentProject = id;
+            // const ul = document.createElement("ul");
+            // ProjectsUI.elements.tasksList.innerHTML = "";
+            // tasks.forEach ((task) => {
+            //     ul.append(ProjectsUI.makeTask(task));
+            //     ProjectsUI.elements.tasksList.append(ul);
+            // });
+            this.showProjectTasks(tasks);
+        });
+    }
+    updateProjectsAndTasks (projects) {
+        ProjectsUI.elements.projectsList.innerHTML = "";
         projects.forEach ( (project) => {
             const projectLink = document.createElement("li");
             const tasks = project.tasks;
             const id = project.id;
             projectLink.textContent = project.name;
             ProjectsUI.elements.projectsList.append(projectLink);
-            linkTasks(id, projectLink, tasks);
+            this.linkTasks(projectLink, tasks, id);
         } );
-        function linkTasks (projectLink, tasks, id) {
-            projectLink.addEventListener("click", () => {
-                // UIHandler.#tasksList.append(taskLi);
-                ProjectsUI.elements.tasksList.innerHTML = "";
-                tasks.forEach ((task) => {
-                    ProjectsUI.elements.tasksList.append(makeTask(task));
-                });
-
-            });
-            function makeTask(task) {
-                const li = document.createElement("li");
-                const check = document.createElement("div");
-                const taskDiv = document.createElement("div");
-                const taskTitle = document.createElement("div");
-                const taskDetails = document.createElement("div");
-                li.setAttribute("id", task.id);
-                check.setAttribute("class", "unchecked");
-                taskDiv.setAttribute("class", "list-details");
-                taskTitle.setAttribute("class", "task-title");
-                taskDetails.setAttribute("class", "task-details");
-                taskTitle.textContent = task.title;
-                taskDetails.textContent = task.description;
-                taskDiv.append(taskTitle);
-                taskDiv.append(taskDetails);
-                li.append(check);
-                li.append(taskDiv);
-                return li;
-            } 
-        }
     }
-    static getCurrentViewingProjectID () {
-        
+    showProjectTasks (tasks) {
+        const ul = document.createElement("ul");
+        ProjectsUI.elements.tasksList.innerHTML = "";
+        tasks.forEach ((task) => {
+            ul.append(ProjectsUI.makeTask(task));
+            ProjectsUI.elements.tasksList.append(ul);
+        })
+    }
+    get currentViewingProjectId () {
+        return this.currentProject;
     }
 }
