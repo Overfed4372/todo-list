@@ -1,4 +1,5 @@
-export default class Project {
+// import Tasks from "./tasks";
+export default class Projects{
     constructor () {
         this.projects = [];
     }
@@ -8,11 +9,11 @@ export default class Project {
         } )
     }
     #setTaskId (projectID) {
-        this.projects.filter( (project) => {
+        this.projects.filter ((project) => {
             if(project.id === projectID) {return project};
-        } )[0].tasks.forEach ( (item, index) => {
+        })[0].tasks.forEach ((item, index) => {
             item.id = index += 1;
-        } );
+        });
     }
     get currentProjects () {
         return this.projects;
@@ -22,9 +23,9 @@ export default class Project {
         this.#setProjectId();
     }
     addTask (projectID,{title, description, dueDate, priority}) {
-        this.projects.filter( (project) => {
+        this.projects.filter ((project) => {
             if(project.id === projectID) {return project};
-        } )[0].tasks.push ({title, description, dueDate, priority, isDone: false});
+        })[0].tasks.push ({title, description, dueDate, priority, isDone: false});
         this.#setTaskId(projectID);
         // this.#setTaskId();
     }
@@ -33,15 +34,14 @@ export default class Project {
         this.#setProjectId();
     }
     removeTask (projectID, taskId) {
-        this.projects.filter( (project) => {
+        this.projects.filter ((project) => {
             if(project.id === projectID) {return project};
-        } )[0].tasks.splice(taskId-1, 1);
+        })[0].tasks.splice(taskId-1, 1);
         this.#setTaskId(projectID);
     }
     setDone (projectID, taskId) {
-        // this.tasks[id-1].isDone = true;
-        this.projects.filter( (project) => {
+        this.projects.filter ((project) => {
             if(project.id === projectID) {return project};
-        } )[0].tasks[taskId-1].isDone = true;
+        })[0].tasks[taskId-1].isDone = true;
     } 
 }
