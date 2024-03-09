@@ -169,18 +169,25 @@ export class ProjectsUI {
 
 // import CheckRunner from "./check-task-done-runner";
 export default class ProjectsUI {
-    constructor () {
-        this.currentProject;
-    }
+    // constructor () {
+    //     this.currentProject;
+    // }
     static elements = {
         //  navbar: document.querySelector(".content .navbar"),
          projectsTitle: document.querySelector(".projects-title"),
          projectsList: document.querySelector(".projects-list"),
          tasksList: document.querySelector(".tasks-list"),
+         allProjects: ()=> [...document.querySelectorAll(".projects-list li")]
         //  projectForm: document.querySelector(".projects-form"),
         //  projectInput: ProjectsUI.#projectForm.querySelector("form label input"),
         //  projectInputError: ProjectsUI.#projectForm.querySelector("form span"),
         //  projectSubmit: ProjectsUI.#projectForm.querySelector("form button")
+    }
+    static styleSelectedProject (selectedProject) {
+        for (const project of ProjectsUI.elements.allProjects()) {
+            project.classList.remove("selected");
+        }
+        selectedProject.classList.add("selected");
     }
     static makeTask (task) {
         const ui = document.createElement("ui");
@@ -190,7 +197,7 @@ export default class ProjectsUI {
         const taskTitle = document.createElement("div");
         const taskDetails = document.createElement("div");
         li.setAttribute("id", task.id);
-        check.setAttribute("class", "done-check-box unchecked");
+        check.setAttribute("class", "done-check-box");
         if (task.isDone) {
             li.classList.toggle("done");
             check.classList.toggle("checked");
@@ -206,7 +213,7 @@ export default class ProjectsUI {
         li.append(taskDiv);
         return li;
     }
-    linkTasks (projectLink, tasks, id) {
+    static linkTasks (projectLink, tasks, id) {
         projectLink.addEventListener("click", () => {
             this.currentProject = id;
             // const ul = document.createElement("ul");
@@ -216,28 +223,35 @@ export default class ProjectsUI {
             //     ProjectsUI.elements.tasksList.append(ul);
             // });
             this.showProjectTasks(tasks);
+            // ProjectsUI.styleSelectedProject(projectLink);
         });
     }
-    updateProjectsAndTasks (projects) {
+    static updateProjectsAndTasks (projects) {
         ProjectsUI.elements.projectsList.innerHTML = "";
         projects.forEach ( (project) => {
             const projectLink = document.createElement("li");
             const tasks = project.tasks;
             const id = project.id;
+            console.log(this.currentProject);
             projectLink.textContent = project.name;
             ProjectsUI.elements.projectsList.append(projectLink);
             this.linkTasks(projectLink, tasks, id);
         } );
+        if (this.currentProject) {
+            const selectedProject = ProjectsUI.elements.allProjects()[this.currentProject - 1];
+            ProjectsUI.styleSelectedProject(selectedProject);
+        }
     }
-    showProjectTasks (tasks) {
+    static showProjectTasks (tasks) {
         const ul = document.createElement("ul");
         ProjectsUI.elements.tasksList.innerHTML = "";
         tasks.forEach ((task) => {
             ul.append(ProjectsUI.makeTask(task));
             ProjectsUI.elements.tasksList.append(ul);
         })
-    }
-    get currentViewingProjectId () {
-        return this.currentProject;
+        if (this.currentProject) {
+            const selectedProject = ProjectsUI.elements.allProjects()[this.currentProject - 1];
+            ProjectsUI.styleSelectedProject(selectedProject);
+        }
     }
 }

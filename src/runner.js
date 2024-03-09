@@ -1,5 +1,5 @@
 import FormRunner from "./form-runner";
-import CheckRunner from "./check-task-done-runner";
+import projectLinkAndCheckboxRunner from "./project-link-checktask-ruuner";
 import Update from "./update";
 export default class Runner {
     constructor () {

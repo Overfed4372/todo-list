@@ -1,17 +1,30 @@
 import CheckRunner from "./check-task-done-runner";
 export default class projectLinkAndCheckboxRunner extends CheckRunner {
-    static projectElements = {
-        projects: () => document.querySelectorAll(".projects-list li")
+    constructor () {
+        super();
+        this.currentProjectId;
     }
-    static runProjectLinksForCheckboxes (currentProjectId, updater) {
+    static projectElements = {
+        projects: () => [...document.querySelectorAll(".projects-list li")]
+    }
+    runProjectLinksForCheckboxes (updater) {
         projectLinkAndCheckboxRunner.projectElements.projects().forEach(element => {
             element.addEventListener ("click" , ()=> {
-                projectLinkAndCheckboxRunner.runCheckBoxes(currentProjectId, updater);
+                projectLinkAndCheckboxRunner.projectElements.projects().filter( (project, index) =>{
+                    if (element === project) {
+                        this.currentProjectId = index += 1
+                        return;
+                    }
+                });
+                this.runCheckBoxes(this.currentProjectId, updater);
             });
         });
     }
-    static run (currentProjectId, updater) {
-        projectLinkAndCheckboxRunner.runCheckBoxes(currentProjectId, updater);
-        projectLinkAndCheckboxRunner.runProjectLinksForCheckboxes(currentProjectId, updater);
+    run (updater) {
+        this.runCheckBoxes(this.currentProjectId, updater);
+        this.runProjectLinksForCheckboxes(this.currentProjectId, updater);
+    }
+    currentViewingProjectId () {
+        return this.currentProjectId;
     }
 }

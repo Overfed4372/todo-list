@@ -6,7 +6,8 @@ import projectLinkAndCheckboxRunner from "./project-link-checktask-ruuner";
 export default class Update {
     constructor () {
         this.projects = new Projects();
-        this.UIUpdater = new ProjectsUI();
+        // this.UIUpdater = new ProjectsUI();
+        this.checkBoxes = new projectLinkAndCheckboxRunner ();
         Forms.setFormsUI();
         // this.projects.addProject("khar");
         // // projectID,{title, description, dueDate, priority}
@@ -23,19 +24,20 @@ export default class Update {
     }
     updateUIStatus () {
         const currentProject = this.currentViewingProjectId();
-        this.UIUpdater.updateProjectsAndTasks(this.projects.currentProjects);
         // CheckRunner.runCheckBoxes(currentProject, this);
-        projectLinkAndCheckboxRunner.runCheckBoxes(currentProject, this);
+        ProjectsUI.updateProjectsAndTasks(this.projects.currentProjects);
+        this.checkBoxes.runProjectLinksForCheckboxes(this);
+        console.log(this.checkBoxes.currentViewingProjectId());
     }
     currentViewingProjectId () {
         // console.log(this.UIUpdater.currentViewingProjectId);
-        return this.UIUpdater.currentViewingProjectId;
+        return this.checkBoxes.currentViewingProjectId();
     }
     showCurrentProject (projectID) {
         const currentProject = this.currentViewingProjectId();
         const tasks = this.projects.getProject(projectID).tasks;
-        this.UIUpdater.showProjectTasks(tasks);
-        projectLinkAndCheckboxRunner.run(currentProject, this);
+        ProjectsUI.showProjectTasks(tasks);
+        this.checkBoxes.runCheckBoxes(currentProject, this);
     }
     addProject (name) {
         this.projects.addProject(name);

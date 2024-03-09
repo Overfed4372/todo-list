@@ -86,6 +86,9 @@ ul {
                     border-bottom: 1px solid black;
                     cursor: pointer;
                 }
+                li.selected {
+                    border-bottom: 1px solid black;
+                }
             }
         }
     }
