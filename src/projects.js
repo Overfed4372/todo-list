@@ -51,9 +51,10 @@ export default class Projects{
         })[0].tasks.splice(taskId-1, 1);
         this.#setTaskId(projectID);
     }
-    setDone (projectID, taskId) {
+    setDoneOrUndone (projectID, taskId, doneOrNot) {
         this.projects.filter ((project) => {
             if(project.id === projectID) {return project};
-        })[0].tasks[taskId-1].isDone = true;
+        })[0].tasks[taskId-1].isDone = doneOrNot;
+        console.log(this.projects);
     } 
 }

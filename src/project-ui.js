@@ -167,7 +167,7 @@ export class ProjectsUI {
 }
 */
 
-
+// import CheckRunner from "./check-task-done-runner";
 export default class ProjectsUI {
     constructor () {
         this.currentProject;
@@ -190,7 +190,11 @@ export default class ProjectsUI {
         const taskTitle = document.createElement("div");
         const taskDetails = document.createElement("div");
         li.setAttribute("id", task.id);
-        check.setAttribute("class", "unchecked");
+        check.setAttribute("class", "done-check-box unchecked");
+        if (task.isDone) {
+            li.classList.toggle("done");
+            check.classList.toggle("checked");
+        }
         taskDiv.setAttribute("class", "list-details");
         taskTitle.setAttribute("class", "task-title");
         taskDetails.setAttribute("class", "task-details");

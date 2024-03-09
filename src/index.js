@@ -4,7 +4,8 @@ import './style.css';
 import './initial-ui';
 import UIHandler from './project-ui';
 import Update from './update';
-import Runner from './runner';
+import FormRunner from './form-runner';
+import Runner  from './runner';
 const Run = new Runner ();
 // const Ahmad = new Project ({
 //     title: "Khar" ,
@@ -32,4 +33,4 @@ const Run = new Runner ();
 // projectUI.initate();
 // console.log(Ahmad.currentProjects);
 // projectUI.updateUIStatus();
-Run.runForms();
+Run.run();
