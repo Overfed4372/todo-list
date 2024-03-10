@@ -77,7 +77,7 @@ export default class Update {
     removeTask (projectID, taskId) {
         this.projects.removeTask(projectID, taskId);
     }
-    setTaskDoneOrUndone (projectID, taskId, doneOrNot) {
+    finishTask (projectID, taskId, doneOrNot) {
         this.projects.setDoneOrUndone(projectID, taskId, doneOrNot);
     }
 }

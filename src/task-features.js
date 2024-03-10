@@ -56,7 +56,7 @@ export default class TaskFeatures {
                     });
                     console.log(...["updater", updater]);
                     console.log(...["taskId", taskNumber]);
-                    updater.setTaskDoneOrUndone(currentProjectId, taskNumber, doneOrNot);
+                    updater.finishTask(currentProjectId, taskNumber, doneOrNot);
                     // return {taskNumber, doneOrNot}
                 });
             })

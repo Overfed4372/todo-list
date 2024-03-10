@@ -136,6 +136,10 @@ ul {
                     border: solid 1.5px black;
                     &.done {
                         border: solid 3px green;
+                        background-color: lightgreen;
+                        .task-title, .task-details {
+                            text-decoration: line-through;
+                        }
                     }
                     .done-check-box{
                         width: 13px;
