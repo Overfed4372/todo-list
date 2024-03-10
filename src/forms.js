@@ -1,26 +1,26 @@
+import elements from "./required-dom-elements";
 export default class Forms {
     static projectElements = {
-        formOuter: document.querySelector (".projects-form"),
-        form: document.querySelector (".projects-form form"),
-        inputError: document.querySelector (".projects-form form span"),
-        submit: document.querySelector (".projects-form form button"),
-        title: () => document.querySelector (".projects-title "),
-        displayButton: () => document.querySelector (".projects-title .add-image"),
-        input: () => document.querySelector (".projects-form form label input"),
+        formOuter: elements.projectForm.projectsOuterForm,
+        form: elements.projectForm.projectsForm,
+        inputError: elements.projectForm.projectsInputError,
+        submit: elements.projectForm.projectsFormSubmit,
+        title: elements.project.projectsTitle,
+        displayButton: elements.project.projectsDisplayButton,
+        input: elements.projectForm.projectsInput,
     }
     static taskElements = {
-        addTask: document.querySelector(".add-tasks"),
-        list: document.querySelector(".tasks-list"),
-        form : document.querySelector(".task-field"),
-        submit: document.querySelector("task-form-submit"),
-        formOuter: () => document.querySelector(".task-form"),
-        title: () => document.querySelector(".task-title"),
-        details: () => document.querySelector(".task-details"),
+        addTask: elements.task.addTasks,
+        // form : elements.taskForm.tasksForm,
+        // submit: elements.taskForm.tasksSubmit,
+        formOuter: elements.taskForm.tasksFormOuter,
+        title: elements.task.tasksTitle,
+        details: elements.task.tasksDetails
     }
     static setProjectsFormUI () {
         (function createForm () {
-            Forms.projectElements.formOuter.innerHTML = "";
-            Forms.projectElements.formOuter.innerHTML += `
+            Forms.projectElements.formOuter().innerHTML = "";
+            Forms.projectElements.formOuter().innerHTML += `
                 <form>
                     <label>
                         Name
@@ -30,7 +30,7 @@ export default class Forms {
                     <button type="button">Add</button>
                 </form>
             ` ;
-            Forms.projectElements.formOuter.style.display = "none";
+            Forms.projectElements.formOuter().style.display = "none";
         }) (); 
         (function displayForm () {
             const add = document.createElement("svg");
@@ -41,14 +41,14 @@ export default class Forms {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z" fill="#0F0F0F"/>
             </svg>
             `;
-            Forms.projectElements.title().removeChild(Forms.projectElements.title().lastElementChild);
-            Forms.projectElements.title().append(add);
+            Forms.projectElements.title.removeChild(Forms.projectElements.title.lastElementChild);
+            Forms.projectElements.title.append(add);
             Forms.projectElements.displayButton().addEventListener ("click" , (event) => {
                 // console.log(ProjectsUI.#projectForm.display);
-                if (Forms.projectElements.formOuter.style.display === "none") {
-                    Forms.projectElements.formOuter.style.display = "block";
+                if (Forms.projectElements.formOuter().style.display === "none") {
+                    Forms.projectElements.formOuter().style.display = "block";
                 } else {
-                    Forms.projectElements.formOuter.style.display = "none";
+                    Forms.projectElements.formOuter().style.display = "none";
                 }
             });
         }) ();

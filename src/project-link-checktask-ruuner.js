@@ -1,3 +1,4 @@
+import elements from "./required-dom-elements";
 import CheckRunner from "./check-task-done-runner";
 export default class projectLinkAndCheckboxRunner extends CheckRunner {
     constructor () {
@@ -5,7 +6,7 @@ export default class projectLinkAndCheckboxRunner extends CheckRunner {
         this.currentProjectId;
     }
     static projectElements = {
-        projects: () => [...document.querySelectorAll(".projects-list li")]
+        projects: elements.project.projects
     }
     runProjectLinksForCheckboxes (updater) {
         projectLinkAndCheckboxRunner.projectElements.projects().forEach(element => {

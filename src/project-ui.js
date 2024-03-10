@@ -167,6 +167,7 @@ export class ProjectsUI {
 }
 */
 
+import elements from "./required-dom-elements";
 // import CheckRunner from "./check-task-done-runner";
 export default class ProjectsUI {
     // constructor () {
@@ -174,10 +175,10 @@ export default class ProjectsUI {
     // }
     static elements = {
         //  navbar: document.querySelector(".content .navbar"),
-         projectsTitle: document.querySelector(".projects-title"),
-         projectsList: document.querySelector(".projects-list"),
-         tasksList: document.querySelector(".tasks-list"),
-         allProjects: ()=> [...document.querySelectorAll(".projects-list li")]
+        //  projectsTitle: elements.project.projectsTitle,
+         projectsList: elements.project.projectsList,
+         tasksList: elements.task.tasksListOuter,
+         allProjects: elements.project.projects
         //  projectForm: document.querySelector(".projects-form"),
         //  projectInput: ProjectsUI.#projectForm.querySelector("form label input"),
         //  projectInputError: ProjectsUI.#projectForm.querySelector("form span"),

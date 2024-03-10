@@ -1,0 +1,31 @@
+export default class elements {
+    static project = {
+        projectsTitle: document.querySelector(".projects-title"),
+        projectsList: document.querySelector(".projects-list"),
+        projects: () => [...document.querySelectorAll(".projects-list li")],
+        projectsDisplayButton: () => document.querySelector (".projects-title .add-image"),
+    }
+    static task = {
+        tasksListOuter: document.querySelector(".tasks-list"),
+        tasksList: document.querySelector(".tasks-list ul"),
+        tasksTitle: () => document.querySelector(".task-title"),
+        tasksDetails: () => document.querySelector(".task-details"),
+        tasks: () => [...document.querySelectorAll(".tasks-list ul li")], 
+        addTasks: document.querySelector(".add-tasks"),
+    }
+    static projectForm = {
+        projectsOuterForm: () => document.querySelector(".projects-form"),
+        projectsForm: () => document.querySelector(".projects-form form"),
+        projectsFormSubmit: () => document.querySelector(".projects-form form button"),
+        projectsInput: () => document.querySelector (".projects-form form label input"),
+        projectsInputError: () => document.querySelector (".projects-form form span"),
+    }
+    static taskForm = {
+        tasksForm: () => document.querySelector(".task-field"),
+        tasksFormOuter: () => document.querySelector(".task-form"),
+        tasksSubmit: () => document.querySelector(".task-form-submit")
+    }
+    static checkBox = {
+        checkBoxes: () => [...document.querySelectorAll("div.done-check-box")],
+    }
+}

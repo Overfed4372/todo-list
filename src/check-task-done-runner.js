@@ -1,11 +1,12 @@
+import elements from "./required-dom-elements";
 import Update from "./update";
 export default class CheckRunner {
     constructor () {
         this.currentViewingProject;
     }
     static elements = {
-        checkBoxes: () => document.querySelectorAll("div.done-check-box"),
-        tasks: () => [...document.querySelectorAll(".tasks-list ul li")]
+        checkBoxes: elements.checkBox.checkBoxes,
+        tasks: elements.task.tasks
     }
     runCheckBoxes (currentProjectId, updater) {
         console.log(currentProjectId);

@@ -1,3 +1,4 @@
+import elements from "./required-dom-elements";
 import Update from "./update";
 import Forms from "./forms";
 import CheckRunner from "./check-task-done-runner";
@@ -6,16 +7,16 @@ export default class FormRunner {
     //     this.currentViewingProject;
     // }
     static elements = {
-        projectsTitle: document.querySelector(".projects-title"),
-        projectsList: document.querySelector(".projects-list"),
-        tasksList: document.querySelector(".tasks-list ul"),
-        projectsOuterForm: () => document.querySelector(".projects-form"),
-        projectsForm: () => document.querySelector(".projects-form form"),
-        projectsFormSubmit: () => document.querySelector(".projects-form form button"),
-        tasksForm: () => document.querySelector(".task-field"),
-        tasksTitle: () => document.querySelector(".task-title"),
-        tasksDetails: () => document.querySelector(".task-details"),
-        tasksSubmit: () => document.querySelector(".task-form-submit")
+        projectsTitle: elements.project.projectsTitle,
+        projectsList: elements.project.projectsList,
+        tasksList: elements.task.tasksList,
+        projectsOuterForm: elements.projectForm.projectsOuterForm,
+        projectsForm: elements.projectForm.projectsForm,
+        projectsFormSubmit: elements.projectForm.projectsFormSubmit,
+        tasksForm: elements.taskForm.tasksForm,
+        tasksTitle: elements.task.tasksTitle,
+        tasksDetails: elements.task.tasksDetails,
+        tasksSubmit: elements.taskForm.tasksSubmit
     }
     static runProjectsForm (UpdaterUI) {
         FormRunner.elements.projectsFormSubmit().addEventListener("click" , () => {
