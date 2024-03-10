@@ -1,4 +1,4 @@
-export default class elements {
+export default class Elements {
     static project = {
         projectsTitle: document.querySelector(".projects-title"),
         projectsList: document.querySelector(".projects-list"),
@@ -7,11 +7,14 @@ export default class elements {
     }
     static task = {
         tasksListOuter: document.querySelector(".tasks-list"),
-        tasksList: document.querySelector(".tasks-list ul"),
+        tasksList: () => document.querySelector(".tasks-list ul"),
         tasksTitle: () => document.querySelector(".task-title"),
         tasksDetails: () => document.querySelector(".task-details"),
-        tasks: () => [...document.querySelectorAll(".tasks-list ul li")], 
-        addTasks: document.querySelector(".add-tasks"),
+        tasks: () => [...document.querySelectorAll(".tasks-list ul li")],
+        tasksInner: () => [...document.querySelectorAll(".tasks-list ul li .task-item")],
+        tasksAdd: document.querySelector(".add-tasks"),
+        tasksEdit: () => [...document.querySelectorAll(".task-edit")],
+        tasksDelete: () => [...document.querySelectorAll(".task-delete")]
     }
     static projectForm = {
         projectsOuterForm: () => document.querySelector(".projects-form"),

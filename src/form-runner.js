@@ -26,6 +26,7 @@ export default class FormRunner {
         });
     }
     static runTasksForm (UpdaterUI) {
+        if (!FormRunner.elements.tasksSubmit()) return;
         FormRunner.elements.tasksSubmit().addEventListener("click", (event) => {
             event.preventDefault();
             const newTask = Forms.getNewTask();
@@ -34,7 +35,7 @@ export default class FormRunner {
             console.log(projectId);
             UpdaterUI.addTask(projectId, {title: newTask.title, description: newTask.details, dueDate: 0, priority: 0});
             UpdaterUI.updateUIStatus();
-            UpdaterUI.showCurrentProject(projectId);
+            UpdaterUI.showCurrentProjectTasks(projectId);
             // CheckRunner.runCheckBoxes(projectId, UpdaterUI);
         })
     }

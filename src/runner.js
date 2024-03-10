@@ -9,7 +9,7 @@ export default class Runner {
         this.UpdaterUI.updateUIStatus();
     }
     run () {
-        FormRunner.runForms (this.UpdaterUI);
+        FormRunner.runProjectsForm (this.UpdaterUI);
         // CheckRunner.runCheckBoxes (this.UpdaterUI);
     }
 }

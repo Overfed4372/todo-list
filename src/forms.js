@@ -10,7 +10,7 @@ export default class Forms {
         input: elements.projectForm.projectsInput,
     }
     static taskElements = {
-        addTask: elements.task.addTasks,
+        addTask: elements.task.tasksAdd,
         // form : elements.taskForm.tasksForm,
         // submit: elements.taskForm.tasksSubmit,
         formOuter: elements.taskForm.tasksFormOuter,

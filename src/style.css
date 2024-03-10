@@ -104,27 +104,62 @@ ul {
         .tasks-list {
             padding-top: 30px;
             margin-right: 30px;
+            ul {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+            }
             li {
                 display: flex;
-                align-items: flex-start;
-                height: auto;
-                padding: 0;
-                padding-left : 5px;
-                margin-bottom: 5px;
-                border: solid 1.5px black;
-                &.done {
-                    border: solid 3px green;
+                column-gap: 10px;
+                align-items: center;
+                justify-content: center;
+                .task-edit {
+                    svg {
+                        width: 15px;
+                        height: 20px;
+                    }
+                    &:hover {
+                        svg {
+                            width: 30px;
+                            height: 40px;
+                        }   
+                    }
                 }
-                .done-check-box{
-                    width: 13px;
-                    height: 13px;
-                    border: solid 2px black;
-                    border-radius: 50%;
-                    margin-right: 8px;
-                    margin-top: 10px;
-                    flex-shrink: 0;
-                    &.checked {
-                        border: solid 2px green;
+                .task-item {
+                    flex: 1 1 auto;
+                    display: flex;
+                    align-items: flex-start;
+                    height: auto;
+                    padding: 0;
+                    padding-left : 5px;
+                    border: solid 1.5px black;
+                    &.done {
+                        border: solid 3px green;
+                    }
+                    .done-check-box{
+                        width: 13px;
+                        height: 13px;
+                        border: solid 2px black;
+                        border-radius: 50%;
+                        margin-right: 8px;
+                        margin-top: 10px;
+                        flex-shrink: 0;
+                        &.checked {
+                            border: solid 2px green;
+                        }
+                    }
+                }
+                .task-delete {
+                    svg {
+                        width: 20px;
+                        height: 30px;
+                    }
+                    &:hover {
+                        svg {
+                            width: 30px;
+                            height: 60px;
+                        }   
                     }
                 }
             }

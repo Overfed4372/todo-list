@@ -1,18 +1,14 @@
 import elements from "./required-dom-elements";
 import Update from "./update";
 export default class CheckRunner {
-    constructor () {
-        this.currentViewingProject;
-    }
     static elements = {
         checkBoxes: elements.checkBox.checkBoxes,
-        tasks: elements.task.tasks
+        tasks: elements.task.tasksInner
     }
-    runCheckBoxes (currentProjectId, updater) {
+    static runCheckBoxes (currentProjectId, updater) {
         console.log(currentProjectId);
         if (CheckRunner.elements.checkBoxes().length !== 0) {
             CheckRunner.elements.checkBoxes().forEach( (checkBox) => {
-                console.log(checkBox);
                 checkBox.addEventListener ("click", ()=> {
                     const selectedTask = checkBox.parentNode;
                     let doneOrNot; 
@@ -21,6 +17,7 @@ export default class CheckRunner {
                     selectedTask.classList.toggle("done");
                     doneOrNot = selectedTask.classList.contains("done") ? true : false;
                     console.log(doneOrNot);
+                    console.log(selectedTask);
                     CheckRunner.elements.tasks().filter ( (task, index) =>{
                         if (selectedTask === task) {
                             taskNumber = index+1;
@@ -28,6 +25,7 @@ export default class CheckRunner {
                         }
                     });
                     console.log(...["updater", updater]);
+                    console.log(...["taskId", taskNumber]);
                     updater.setTaskDoneOrUndone(currentProjectId, taskNumber, doneOrNot);
                     // return {taskNumber, doneOrNot}
                 });

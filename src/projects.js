@@ -52,6 +52,7 @@ export default class Projects{
         this.#setTaskId(projectID);
     }
     setDoneOrUndone (projectID, taskId, doneOrNot) {
+        
         this.projects.filter ((project) => {
             if(project.id === projectID) {return project};
         })[0].tasks[taskId-1].isDone = doneOrNot;

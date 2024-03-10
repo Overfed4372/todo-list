@@ -1,14 +1,18 @@
 import Projects from "./projects";
 import ProjectsUI from "./project-ui";
 import Forms from "./forms";
+import FormRunner from "./form-runner";
 // import CheckRunner from "./check-task-done-runner";
-import projectLinkAndCheckboxRunner from "./project-link-checktask-ruuner";
+import TaskFeatures from "./task-features";
+// import projectLinkAndCheckboxRunner from "./project-link-checktask-ruuner";
+import elements from "./required-dom-elements";
 export default class Update {
     constructor () {
         this.projects = new Projects();
         // this.UIUpdater = new ProjectsUI();
-        this.checkBoxes = new projectLinkAndCheckboxRunner ();
-        Forms.setFormsUI();
+        // this.checkBoxes = new projectLinkAndCheckboxRunner ();
+        this.currentProjectId;
+        Forms.setProjectsFormUI();
         // this.projects.addProject("khar");
         // // projectID,{title, description, dueDate, priority}
         // this.projects.addTask (1, {title: "khare-ziba"
@@ -22,22 +26,44 @@ export default class Update {
         // , dueDate: 0
         // , priority: 0});
     }
+    static elements = {
+        projects: elements.project.projects
+    }
     updateUIStatus () {
-        const currentProject = this.currentViewingProjectId();
         // CheckRunner.runCheckBoxes(currentProject, this);
         ProjectsUI.updateProjectsAndTasks(this.projects.currentProjects);
-        this.checkBoxes.runProjectLinksForCheckboxes(this);
-        console.log(this.checkBoxes.currentViewingProjectId());
+        this.setFeaturesOnProjectClick();
+        // this.checkBoxes.runProjectLinksForCheckboxes(this);
     }
     currentViewingProjectId () {
         // console.log(this.UIUpdater.currentViewingProjectId);
-        return this.checkBoxes.currentViewingProjectId();
+        return this.currentProjectId;
     }
-    showCurrentProject (projectID) {
+    showCurrentProjectTasks (projectID) {
         const currentProject = this.currentViewingProjectId();
         const tasks = this.projects.getProject(projectID).tasks;
         ProjectsUI.showProjectTasks(tasks);
-        this.checkBoxes.runCheckBoxes(currentProject, this);
+        this.setFeatures();
+    }
+    setFeatures () {
+        TaskFeatures.finishTasks(this.currentProjectId, this);
+        TaskFeatures.editTasks();
+        TaskFeatures.deleteTasks(this.currentProjectId, this);
+    }
+    setFeaturesOnProjectClick () {
+        Update.elements.projects().forEach(element => {
+            element.addEventListener ("click" , ()=> {
+                Update.elements.projects().filter( (project, index) =>{
+                    if (element === project) {
+                        this.currentProjectId = index + 1;
+                        return;
+                    }
+                });
+                Forms.setTasksFormUI();
+                FormRunner.runTasksForm(this);
+                this.setFeatures();
+            });
+        });
     }
     addProject (name) {
         this.projects.addProject(name);
