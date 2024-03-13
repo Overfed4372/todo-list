@@ -33,7 +33,7 @@ export default class FormRunner {
             // console.log(newTask);
             const projectId = UpdaterUI.currentViewingProjectId();
             console.log(projectId);
-            UpdaterUI.addTask(projectId, {title: newTask.title, description: newTask.details, dueDate: 0, priority: 0});
+            UpdaterUI.addTask(projectId, {title: newTask.title, description: newTask.details, dueDate: newTask.date, priority: 0});
             UpdaterUI.updateUIStatus();
             UpdaterUI.showCurrentProjectTasks(projectId);
             // CheckRunner.runCheckBoxes(projectId, UpdaterUI);

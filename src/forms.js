@@ -14,21 +14,26 @@ export default class Forms {
         // form : elements.taskForm.tasksForm,
         // submit: elements.taskForm.tasksSubmit,
         formOuter: elements.taskForm.tasksFormOuter,
-        title: elements.task.tasksTitle,
-        details: elements.task.tasksDetails
+        title: elements.taskForm.taskTitle,
+        details: elements.taskForm.taskDetails,
+        date: elements.taskForm.taskDate
     }
     static setProjectsFormUI () {
         (function createForm () {
             Forms.projectElements.formOuter().innerHTML = "";
             Forms.projectElements.formOuter().innerHTML += `
-                <form>
-                    <label>
-                        Name
-                        <input type="text" required>
-                    </label>
-                    <span class="error"></span>
-                    <button type="button">Add</button>
-                </form>
+            <form>
+                <ul>
+                    <li>
+                        <label for="__project-name">Projcet Name</label>
+                        <input type="text" name="__project-name" id="__project-name" required>
+                        <span class="error"></span>
+                    </li>
+                    <li>
+                        <button type="button">Add</button>
+                    </li>
+                </ul>
+            </form>
             ` ;
             Forms.projectElements.formOuter().style.display = "none";
         }) (); 
@@ -58,16 +63,26 @@ export default class Forms {
             const formOuter = document.createElement("div");
             formOuter.classList.value = "task-form";
             formOuter.innerHTML = `
-            <form class="task-field">
-                <label>Title:</label>
-                <input class="task-title" type="text" placeholder="What to do?">
-                <label>Details(optional):</label>
-                <textarea class="task-details" placeholder="Write details!"></textarea>
-                <div class="task-form-buttons">
-                    <input class="task-form-submit" type="submit" value="Add">
-                    <input class="task-form-cancel" type="button" value="cancel">
-                </div>
-            </form>
+                <form class="task-field">
+                    <ul>
+                        <li class="task-form-title">
+                            <label>Title:</label>
+                            <input class="task-form-title-input" type="text" placeholder="What to do?">
+                        </li>
+                        <li class="task-form-details">
+                            <label>Details(optional):</label>
+                            <textarea class="task-form-details-input" placeholder="Write details!"></textarea>
+                        </li>
+                        <li class="task-form-date">
+                            <label>Date:</label>
+                            <input class="task-form-date-input" type="date">
+                        </li>
+                        <li class="task-form-buttons">
+                        <input class="task-form-submit" type="submit" value="Add">
+                        <input class="task-form-cancel" type="button" value="cancel">
+                    </li>
+                    </ul>
+                </form>
             `;
             Forms.taskElements.addTask.innerHTML = "";
             Forms.taskElements.addTask.prepend(formOuter);
@@ -103,7 +118,8 @@ export default class Forms {
     static getNewTask () {
         return {
             title: Forms.taskElements.title().value,
-            details: Forms.taskElements.details().value
+            details: Forms.taskElements.details().value,
+            date: Forms.taskElements.date().value
         }
     }
 }

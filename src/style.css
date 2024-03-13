@@ -50,28 +50,31 @@ ul {
             .projects-form {
                 padding-top: 10px;
                 form {
-                    display: flex;
-                    justify-content: flex-start;
-                    flex-direction: column;
-                    gap: 5px;
-                    label {
+                    ul {
                         display: flex;
-                        flex-wrap: wrap;
+                        justify-content: flex-start;
+                        flex-direction: column;
                         gap: 5px;
-                    }
-                    .error {
-                        width: auto;
-                        padding: 0;
-                      
-                        font-size: 80%;
-                        color: white;
-                        background-color: #900;
-                        border-radius: 0 0 5px 5px;
-                      
-                        box-sizing: border-box;
-                      }
-                    .error-active {
-                        padding: 0.3rem;
+                        padding-left: 1rem;
+                        li {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                        }
+                        .error {
+                            width: auto;
+                            padding: 0;
+                        
+                            font-size: 80%;
+                            color: white;
+                            background-color: #900;
+                            border-radius: 0 0 5px 5px;
+                        
+                            box-sizing: border-box;
+                        }
+                        .error-active {
+                            padding: 0.3rem;
+                        }
                     }
                 }
             }
@@ -134,6 +137,7 @@ ul {
                     padding: 0;
                     padding-left : 5px;
                     border: solid 1.5px black;
+                    border-radius: 5px;
                     &.done {
                         border: solid 3px green;
                         background-color: lightgreen;
@@ -153,6 +157,31 @@ ul {
                             border: solid 2px green;
                         }
                     }
+                    .list-details {
+                        flex: 1 1 auto;
+                        * {
+                            overflow: scroll;
+                        }
+                    }
+                    .task-date {
+                        align-self: center;
+                        padding-right: 10px;
+                    }
+                    .task-edit-field {
+                        ul {
+                            padding: 10px;
+                            display: grid;
+                            grid-template: 1fr 1fr 1fr / 1fr;
+                            li {
+                                display: grid;
+                                grid-template: auto / 1fr 1fr;
+                            }
+                            li:last-child {
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
+                    }
                 }
                 .task-delete {
                     svg {
@@ -167,9 +196,22 @@ ul {
                     }
                 }
             }
-            .add-task {
-                margin-top: 10px;
-                padding-top: 0;
+        }
+        .add-tasks {
+            margin-top: 10px;
+            padding-top: 0;
+            .task-field {
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    li {
+                        display: flex;
+                        flex-direction: column;
+                        &.task-form-buttons {
+                            flex-direction: row;
+                        }
+                    }
+                }
             }
         }
 

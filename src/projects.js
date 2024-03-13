@@ -18,14 +18,21 @@ export default class Projects{
     get currentProjects () {
         return this.projects;
     }
-    addProject (name) {
-        this.projects.push ({name, tasks: []});
-        this.#setProjectId();
-    }
     getProject (projcetId) {
         return this.projects.filter ((project) => {
             if(project.id === projcetId) {return project};
         })[0];
+    }
+    getTask (projetId, taskId) {
+        return this.projects.filter ((project) => {
+            if(project.id === projectID) {return project};
+        })[0].tasks.filter ((task) => {
+            if(task.id === taskId) {return task};
+        })[0];
+    }
+    addProject (name) {
+        this.projects.push ({name, tasks: []});
+        this.#setProjectId();
     }
     addTask (projectID,{title, description, dueDate, priority}) {
         this.projects.filter ((project) => {
@@ -33,13 +40,6 @@ export default class Projects{
         })[0].tasks.push ({title, description, dueDate, priority, isDone: false});
         this.#setTaskId(projectID);
         // this.#setTaskId();
-    }
-    getTask (projetId, taskId) {
-        return this.projects.filter ((project) => {
-            if(project.id === projectID) {return project};
-        })[0].tasks.filet ((task) => {
-            if(task.id === taskId) {return task};
-        })[0];
     }
     removeProject (projectID) {
         this.projects.splice (projectID-1, 1);
@@ -51,8 +51,13 @@ export default class Projects{
         })[0].tasks.splice(taskId-1, 1);
         this.#setTaskId(projectID);
     }
+    editTask (projectID, taskId, modifiedTask) {
+        this.projects.filter ((project) => {
+            if(project.id === projectID) {return project};
+        })[0].tasks[taskId-1] = modifiedTask;
+        this.#setTaskId(projectID);
+    }
     setDoneOrUndone (projectID, taskId, doneOrNot) {
-        
         this.projects.filter ((project) => {
             if(project.id === projectID) {return project};
         })[0].tasks[taskId-1].isDone = doneOrNot;

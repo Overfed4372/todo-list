@@ -20,13 +20,16 @@ export default class Elements {
         projectsOuterForm: () => document.querySelector(".projects-form"),
         projectsForm: () => document.querySelector(".projects-form form"),
         projectsFormSubmit: () => document.querySelector(".projects-form form button"),
-        projectsInput: () => document.querySelector (".projects-form form label input"),
-        projectsInputError: () => document.querySelector (".projects-form form span"),
+        projectsInput: () => document.querySelector (".projects-form form #__project-name"),
+        projectsInputError: () => document.querySelector (".projects-form form .error"),
     }
     static taskForm = {
         tasksForm: () => document.querySelector(".task-field"),
         tasksFormOuter: () => document.querySelector(".task-form"),
-        tasksSubmit: () => document.querySelector(".task-form-submit")
+        tasksSubmit: () => document.querySelector(".task-form-submit"),
+        taskTitle: () => document.querySelector(".task-form-title-input"),
+        taskDetails: () => document.querySelector(".task-form-details-input"),
+        taskDate: () => document.querySelector(".task-form-date-input"),
     }
     static checkBox = {
         checkBoxes: () => [...document.querySelectorAll("div.done-check-box")],

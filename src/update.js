@@ -45,9 +45,12 @@ export default class Update {
         ProjectsUI.showProjectTasks(tasks);
         this.setFeatures();
     }
+    getCurrentProjectTasks (projectID) {
+        return this.projects.getProject(projectID).tasks;
+    }
     setFeatures () {
         TaskFeatures.finishTasks(this.currentProjectId, this);
-        TaskFeatures.editTasks();
+        TaskFeatures.editTasks(this.currentProjectId, this);
         TaskFeatures.deleteTasks(this.currentProjectId, this);
     }
     setFeaturesOnProjectClick () {
@@ -76,6 +79,9 @@ export default class Update {
     }
     removeTask (projectID, taskId) {
         this.projects.removeTask(projectID, taskId);
+    }
+    editTask (projectID, taskId, {title, description, dueDate, priority}) {
+        this.projects.editTask(projectID, taskId, {title, description, dueDate, priority});
     }
     finishTask (projectID, taskId, doneOrNot) {
         this.projects.setDoneOrUndone(projectID, taskId, doneOrNot);
