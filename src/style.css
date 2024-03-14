@@ -56,10 +56,14 @@ ul {
                         flex-direction: column;
                         gap: 5px;
                         padding-left: 1rem;
-                        li {
-                            display: flex;
-                            flex-wrap: wrap;
-                            gap: 5px;
+                        li:nth-child(1) {
+                            display: grid;
+                            column-gap: 5px;
+                            row-gap: 2px;
+                            grid-template-areas: "label input" ". input-error";
+                            .error {
+                                grid-area: input-error;
+                            }
                         }
                         .error {
                             width: auto;
@@ -134,7 +138,7 @@ ul {
                     display: flex;
                     align-items: flex-start;
                     height: auto;
-                    padding: 0;
+                    padding: 5px;
                     padding-left : 5px;
                     border: solid 1.5px black;
                     border-radius: 5px;

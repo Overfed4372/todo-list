@@ -86,16 +86,13 @@ export default class TaskFeatures {
             const form = formOuter.querySelector("form");
             form.addEventListener( "submit", (event) => {
                 event.preventDefault();
-            })
-            submit.addEventListener( "click", (event)=> {
-                event.preventDefault();
                 const title = titleElement.value;
                 const description = detailsElement.value;
                 const dueDate = dateElement.value;
                 const modifiedTask = {title, description, dueDate, priority: task.priority};
                 updater.editTask(currentProject, taskId, modifiedTask)
                 updater.showCurrentProjectTasks(currentProject);
-            });
+            })
             cancel.addEventListener( "click", ()=> {
                 updater.showCurrentProjectTasks(currentProject);
             });

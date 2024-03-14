@@ -26,11 +26,11 @@ export default class Forms {
                 <ul>
                     <li>
                         <label for="__project-name">Projcet Name</label>
-                        <input type="text" name="__project-name" id="__project-name" required>
+                        <input type="text" name="__project-name" id="__project-name">
                         <span class="error"></span>
                     </li>
                     <li>
-                        <button type="button">Add</button>
+                        <button type="submit">Add</button>
                     </li>
                 </ul>
             </form>
@@ -63,7 +63,7 @@ export default class Forms {
             const formOuter = document.createElement("div");
             formOuter.classList.value = "task-form";
             formOuter.innerHTML = `
-                <form class="task-field">
+                <form class="task-field" novalidate>
                     <ul>
                         <li class="task-form-title">
                             <label>Title:</label>
@@ -111,6 +111,15 @@ export default class Forms {
     static setFormsUI () {
         Forms.setProjectsFormUI();
         Forms.setTasksFormUI();
+    }
+    static get cleanForms () {
+        const project = () => Forms.projectElements.input().value = "";
+        const task = () => {
+            Forms.taskElements.title().value = "";
+            Forms.taskElements.details().value = "";
+            Forms.taskElements.date().value = "";
+        }
+        return {project, task};
     }
     static getNewProject () {
         return Forms.projectElements.input().value;
